@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package company;
+
+option go_package = "github.com/Geniuskaa/job-task/pkg/gen/proto/v1";
+
+import "google/api/annotations.proto";
+
+service RusProfile{
+  rpc GetCompanyInfo(CompanyINN) returns (CompanyInfo) {
+    option (google.api.http) = {
+      get: "/company-info/{inn}"
+    };
+  }
+}
+
+message CompanyINN {
+  string inn = 1;
+}
+
+message CompanyInfo {
+  string inn = 1;
+  string kpp = 2;
+  string companyName = 3;
+  string ownerFullName = 4;
+}
